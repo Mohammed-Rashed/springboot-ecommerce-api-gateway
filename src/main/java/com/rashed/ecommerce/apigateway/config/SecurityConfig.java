@@ -26,10 +26,10 @@ public class SecurityConfig {
                         .pathMatchers("/actuator/**").permitAll()
                         .pathMatchers("/api/v1/auth/**").permitAll()
 
-                        .pathMatchers("/api/v1/orders", "/api/v1/orders/**").authenticated()
-                        .pathMatchers("/api/v1/products", "/api/v1/products/**").authenticated()
-                        .pathMatchers("/api/v1/categories", "/api/v1/categories/**").authenticated()
-                        .pathMatchers("/api/v1/inventory", "/api/v1/inventory/**").authenticated()
+                        .pathMatchers("/api/v1/orders", "/api/v1/orders/**").hasAnyRole("CUSTOMER")
+                        .pathMatchers("/api/v1/products", "/api/v1/products/**").hasRole( "ADMIN")
+                        .pathMatchers("/api/v1/categories", "/api/v1/categories/**").hasRole( "ADMIN")
+                        .pathMatchers("/api/v1/inventory", "/api/v1/inventory/**").hasRole( "ADMIN")
 
                         .anyExchange().authenticated()
                 )
